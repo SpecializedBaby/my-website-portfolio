@@ -1,0 +1,176 @@
+# Portfolio content. Edit this file (and content/posts/*.md) and redeploy to update the
+# site. `bio` and `greeting` may contain trusted inline HTML for emphasis.
+
+profile:
+  name: Dmytro Kostevskyi
+  initials: DK
+  greeting: "Hello 👋, I'm Dmytro"
+  role: Solution Architect
+  location: Tenerife, Spain
+  available_for_work: true
+  bio: >-
+    I design and build <span style="color:var(--fg); font-weight:500;">production
+    platforms</span> that replace fragmented workflows with systems companies actually
+    rely on — CRM architecture, AI-powered automation, and backend platforms on Python,
+    FastAPI &amp; AWS. Currently Tech Lead &amp; Solution Architect at <span
+    style="color:var(--fg); font-weight:500;">Amulet Property Investment</span>.
+
+socials:
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/dmytro-kostevskyi
+    icon: linkedin
+  - label: GitHub
+    url: https://github.com/dmytrokostevskyi
+    icon: github
+  - label: Telegram
+    url: https://t.me/dmytro_kostevskyi
+    icon: telegram
+  - label: Email
+    url: mailto:dmytro.kostevskyi@gmail.com
+    icon: email
+
+products:
+  - initial: A
+    kind: Platform
+    name: Amulet CRM
+    desc: "Operational core for a property investment company: lead intake, deal management, property listings, and owner financial reporting."
+    stack: [FastAPI, PostgreSQL, RabbitMQ, React 19, AWS]
+  - initial: H
+    kind: Platform
+    name: H&W Operations Platform
+    desc: Centralized Django ops platform for a Dutch construction firm, with a RAG AI assistant for task assignment and material calculation.
+    stack: [Django DRF, Celery, OpenAI, LangChain]
+  - initial: T
+    kind: Project
+    name: TaskMaster Pro
+    desc: Task-management dashboard with analytics and reporting.
+    stack: [Django, PostgreSQL]
+  - initial: C
+    kind: Project
+    name: CasaBot
+    desc: Telegram bot for property enquiries and lead capture.
+    stack: [Aiogram3, FastAPI, RabbitMQ]
+  - initial: C
+    kind: Project
+    name: Cinema Fullstack
+    desc: Full-stack cinema booking platform with seat selection.
+    stack: [Django, Vue.js, PostgreSQL]
+  - initial: L
+    kind: Project
+    name: Library Service
+    desc: Library management with auth and Telegram notifications.
+    stack: [Django, JWT, Telegram]
+  - initial: W
+    kind: Project
+    name: WritRoad
+    desc: Travel-agency web platform with booking flow.
+    stack: [Django, Next.js]
+  - initial: S
+    kind: Project
+    name: Scraping AutoRia
+    desc: Async, scheduled marketplace scraper with data pipeline.
+    stack: [Python, Asyncio]
+
+experience:
+  - company: Amulet Canary Property
+    mono: A
+    type: Full-time
+    period: Jul 2025 — Present
+    tenure: 1 yr
+    location: Tenerife, Spain
+    roles:
+      - title: Tech Lead & Solution Architect
+        span: May 2026 — Present · On-site
+      - title: Full-Stack Developer (Python / React)
+        span: Nov 2025 — Apr 2026 · Hybrid
+      - title: Senior Backend Developer
+        span: Jul 2025 — Oct 2025 · On-site
+    impact:
+      - Lead response <60s
+      - 99% capture in 60s
+      - 100+ concurrent users
+      - Zero lead loss
+      - Full audit trail
+    bullets:
+      - Sole technical point of contact for the company director — translating business requirements into architecture decisions and phased delivery roadmaps.
+      - Architected and built the production CRM from scratch — now the company operational core for leads, deals, listings, and owner financial reporting.
+      - "Built end-to-end automation: reservations → deals → agent assignment → net owner profit → monthly reports, with zero manual entry."
+      - Executed a live WABA → Twilio migration in 3 days after a billing failure — zero permanent disruption to lead flow.
+      - Unified 8+ external platforms into one lead pipeline with two-way property sync across Idealista, Booking.com, Airbnb and more.
+    stack: [Python, FastAPI, SQLModel, PostgreSQL, RabbitMQ, React 19, TypeScript, Docker, AWS EC2/RDS, WebSocket, OpenAI]
+  - company: H&W Totaalbouw BV
+    mono: H
+    type: Contract
+    period: May 2024 — Jun 2025
+    tenure: 1 yr 2 mo
+    location: Netherlands · Remote
+    roles:
+      - title: Senior Backend Developer · AI Automation
+        span: Contract · Remote
+    impact: []
+    bullets:
+      - Built a centralized operations platform replacing fragmented cross-unit communication with a single Django system.
+      - Deployed a Master Task Management System (Django REST + PostgreSQL) as the coordination hub across construction units.
+      - Built a RAG-based AI assistant (OpenAI + LangChain) for task-assignment recommendations and material-quantity calculations.
+    stack: [Django DRF, PostgreSQL, Celery, Redis, Docker, DigitalOcean, OpenAI, LangChain]
+  - company: Marketplace & B2B Projects
+    mono: M
+    type: Independent
+    period: Dec 2022 — Feb 2025
+    tenure: 2 yr 3 mo
+    location: Remote
+    roles:
+      - title: Automation Engineer
+        span: Rozetka · OLX · AliExpress
+    impact: []
+    bullets:
+      - Designed and delivered automation systems for marketplace operators and B2B clients across concurrent projects.
+      - Built data-processing pipelines (Python, Selenium, Pandas) enabling high-volume operations with reduced manual effort.
+      - "Managed full project lifecycle independently: scoping, solution design, build, and delivery."
+    stack: [Python, Selenium, Pandas, n8n / Make, Google Sheets, OpenAI API]
+  - company: DialerWala
+    mono: D
+    type: Full-time
+    period: Feb 2020 — Sep 2022
+    tenure: 2 yr 8 mo
+    location: Kyiv, Ukraine
+    roles:
+      - title: VoIP Support Lead
+        span: On-site
+    impact: []
+    bullets:
+      - Progressed from client support to unit lead, owning VoIP infrastructure troubleshooting, configuration, and client onboarding.
+      - Worked hands-on with Asterisk and Twilio telephony systems, building foundational expertise under production conditions.
+    stack: [Asterisk, Twilio, VoIP]
+
+skills:
+  - cat: Architecture & Design
+    items: [Solution Architecture, System Design, Event-Driven Architecture, API Design, Technical Documentation, Technical Leadership]
+  - cat: Backend & APIs
+    items: [Python, FastAPI, Django, Asyncio, WebSockets, RabbitMQ + Celery, SQLAlchemy, Alembic, Pydantic]
+  - cat: Databases
+    items: [PostgreSQL, MySQL, MongoDB, Redis]
+  - cat: Integrations
+    items: [Facebook Graph API, WhatsApp (Twilio), OpenAI API, LangChain, Booking.com, Airbnb, Idealista]
+  - cat: Frontend & DevOps
+    items: [React 19, TypeScript, Docker, CI/CD, AWS EC2/RDS, DigitalOcean, Grafana, Prometheus]
+  - cat: Security & Testing
+    items: [JWT, OAuth, reCaptcha v3, pytest, Postman, unittest]
+
+education:
+  - degree: Python Developer
+    school: Mate Academy
+    span: 2022 — Present
+    note: "Bootcamp: OOP, Django, FastAPI · actively upgrading"
+  - degree: BSc, Mining & Oil Engineering
+    school: National Technical University of Oil & Gas
+    span: 2016 — 2020
+    note: ""
+
+languages:
+  - name: Ukrainian
+    level: Native
+  - name: English
+    level: B1+
+  - name: Spanish
+    level: A2

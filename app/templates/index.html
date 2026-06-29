@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+{% from "_icons.html" import icon %}
+
+{% block content %}
+<!-- tabs -->
+<div style="display:flex; gap:4px; padding:4px; background:var(--bg-subtle); border:1px solid var(--border); border-radius:14px; margin-bottom:36px; position:sticky; top:16px; z-index:5; backdrop-filter:blur(8px);">
+  <button data-tab="posts" style="flex:1; display:flex; align-items:center; justify-content:center; gap:7px; padding:10px; border:none; border-radius:10px; background:var(--card); color:var(--fg); box-shadow:var(--shadow); font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; transition:all .22s ease;">
+    {{ icon('posts', 15) }} Posts
+  </button>
+  <button data-tab="products" style="flex:1; display:flex; align-items:center; justify-content:center; gap:7px; padding:10px; border:none; border-radius:10px; background:transparent; color:var(--fg-muted); font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; transition:all .22s ease;">
+    {{ icon('products', 15) }} Products
+  </button>
+  <button data-tab="resume" style="flex:1; display:flex; align-items:center; justify-content:center; gap:7px; padding:10px; border:none; border-radius:10px; background:transparent; color:var(--fg-muted); font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; transition:all .22s ease;">
+    {{ icon('resume', 15) }} Resume
+  </button>
+</div>
+
+<!-- ===================== POSTS ===================== -->
+<section data-panel="posts">
+  <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:14px;">
+    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600;">Writing</h2>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--fg-muted);">notes on building systems</span>
+  </div>
+  {% if posts %}
+  <div style="display:flex; flex-direction:column; gap:6px;">
+    {% for post in posts %}
+    <a href="/posts/{{ post.slug }}" style="display:flex; flex-direction:column; gap:9px; padding:20px 0; border-bottom:1px solid var(--border); text-decoration:none; color:inherit; transition:opacity .2s ease;">
+      <div style="display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--fg-muted);">
+        <span style="padding:3px 9px; border-radius:999px; background:var(--accent-soft); color:var(--accent); font-weight:500;">{{ post.tag }}</span>
+        <span>{{ post.date.strftime('%b %Y') }}</span>
+        <span style="width:3px; height:3px; border-radius:50%; background:var(--fg-muted); opacity:.6;"></span>
+        <span>{{ post.read }}</span>
+      </div>
+      <h3 style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600; line-height:1.3; letter-spacing:-0.2px;">{{ post.title }}</h3>
+      <p style="font-size:14.5px; line-height:1.6; color:var(--fg-muted); text-wrap:pretty;">{{ post.excerpt }}</p>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <p style="font-size:14.5px; line-height:1.6; color:var(--fg-muted); padding:28px 0;">No posts yet — first notes are on the way.</p>
+  {% endif %}
+</section>
+
+<!-- ===================== PRODUCTS ===================== -->
+<section data-panel="products" hidden>
+  <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:16px;">
+    <h2 style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600;">Things I've built</h2>
+    <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--fg-muted);">platforms &amp; projects</span>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); gap:14px;">
+    {% for product in site.products %}
+    <div style="display:flex; flex-direction:column; gap:12px; padding:20px; border:1px solid var(--border); border-radius:16px; background:var(--card); box-shadow:var(--shadow); transition:transform .2s ease, border-color .2s ease;">
+      <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px;">
+        <div style="width:40px; height:40px; border-radius:11px; background:var(--bg-subtle); border:1px solid var(--border); display:grid; place-items:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px; color:var(--accent);">{{ product.initial }}</div>
+        <span style="font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.5px; text-transform:uppercase; padding:4px 8px; border-radius:6px; background:var(--accent-soft); color:var(--accent); font-weight:500;">{{ product.kind }}</span>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:5px; flex:1;">
+        <h3 style="font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:600;">{{ product.name }}</h3>
+        <p style="font-size:13.5px; line-height:1.55; color:var(--fg-muted); text-wrap:pretty;">{{ product.desc }}</p>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:6px;">
+        {% for tech in product.stack %}
+        <span style="font-family:'JetBrains Mono',monospace; font-size:11px; padding:3px 8px; border-radius:6px; background:var(--bg-subtle); color:var(--fg-muted);">{{ tech }}</span>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ===================== RESUME ===================== -->
+<section data-panel="resume" hidden>
+  <div style="display:flex; flex-direction:column; gap:40px;">
+
+    {% if has_resume %}
+    <div style="display:flex;">
+      <a href="/resume.pdf" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; padding:9px 15px; border-radius:10px; border:1px solid var(--border); background:var(--card); color:var(--fg); text-decoration:none; font-size:13px; font-weight:500; box-shadow:var(--shadow); transition:all .2s ease;">
+        {{ icon('download', 15) }} Download PDF
+      </a>
+    </div>
+    {% endif %}
+
+    <!-- experience -->
+    <section>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600; margin-bottom:20px;">Experience</h2>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        {% for exp in site.experience %}
+        <div style="display:flex; gap:16px;">
+          <div style="display:flex; flex-direction:column; align-items:center; flex-shrink:0;">
+            <div style="width:44px; height:44px; border-radius:13px; background:var(--bg-subtle); border:1px solid var(--border); display:grid; place-items:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:18px; color:var(--fg);">{{ exp.mono }}</div>
+            <div style="flex:1; width:2px; background:var(--border); margin-top:6px; border-radius:2px;"></div>
+          </div>
+          <div style="flex:1; padding-bottom:26px;">
+            <div style="display:flex; align-items:center; gap:9px; flex-wrap:wrap; margin-bottom:3px;">
+              <h3 style="font-family:'Space Grotesk',sans-serif; font-size:16.5px; font-weight:600;">{{ exp.company }}</h3>
+              {% if exp.type %}<span style="font-family:'JetBrains Mono',monospace; font-size:10px; padding:2px 7px; border-radius:6px; background:var(--bg-subtle); color:var(--fg-muted);">{{ exp.type }}</span>{% endif %}
+            </div>
+            <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--fg-muted); margin-bottom:14px;">
+              <span>{{ exp.period }}</span>
+              <span style="width:3px; height:3px; border-radius:50%; background:var(--fg-muted); opacity:.6;"></span>
+              <span>{{ exp.tenure }}</span>
+              <span style="width:3px; height:3px; border-radius:50%; background:var(--fg-muted); opacity:.6;"></span>
+              <span>{{ exp.location }}</span>
+            </div>
+
+            {% if exp.roles %}
+            <div style="display:flex; flex-direction:column; gap:5px; margin-bottom:14px;">
+              {% for role in exp.roles %}
+              <div style="display:flex; align-items:baseline; gap:9px;">
+                <span style="width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; transform:translateY(-1px);"></span>
+                <span style="font-size:14px; font-weight:600; color:var(--fg);">{{ role.title }}</span>
+                <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--fg-muted);">{{ role.span }}</span>
+              </div>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if exp.impact %}
+            <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;">
+              {% for metric in exp.impact %}
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; padding:4px 9px; border-radius:999px; background:var(--accent-soft); color:var(--accent); font-weight:500;">{{ metric }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if exp.bullets %}
+            <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:14px;">
+              {% for bullet in exp.bullets %}
+              <li style="display:flex; gap:9px; font-size:14px; line-height:1.55; color:var(--fg-muted); text-wrap:pretty;">
+                <span style="color:var(--accent); flex-shrink:0; transform:translateY(1px);">→</span>
+                <span>{{ bullet }}</span>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if exp.stack %}
+            <div style="display:flex; flex-wrap:wrap; gap:6px;">
+              {% for tech in exp.stack %}
+              <span style="font-family:'JetBrains Mono',monospace; font-size:11px; padding:3px 8px; border-radius:6px; background:var(--bg-subtle); color:var(--fg-muted);">{{ tech }}</span>
+              {% endfor %}
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- skills -->
+    <section>
+      <h2 style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600; margin-bottom:18px;">Skills</h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:14px;">
+        {% for group in site.skills %}
+        <div style="padding:18px; border:1px solid var(--border); border-radius:14px; background:var(--card);">
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.5px; text-transform:uppercase; color:var(--fg-muted); margin-bottom:12px;">{{ group.cat }}</div>
+          <div style="display:flex; flex-wrap:wrap; gap:7px;">
+            {% for item in group.items %}
+            <span style="font-size:13px; padding:5px 11px; border-radius:8px; background:var(--bg-subtle); color:var(--fg); border:1px solid var(--border);">{{ item }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- education + languages -->
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:32px;">
+      <section>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600; margin-bottom:18px;">Education</h2>
+        <div style="display:flex; flex-direction:column; gap:18px;">
+          {% for edu in site.education %}
+          <div style="display:flex; flex-direction:column; gap:3px;">
+            <div style="font-size:15px; font-weight:600; font-family:'Space Grotesk',sans-serif;">{{ edu.degree }}</div>
+            <div style="font-size:13.5px; color:var(--fg);">{{ edu.school }}</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--fg-muted);">{{ edu.span }}</div>
+            {% if edu.note %}<div style="font-size:12.5px; color:var(--fg-muted); margin-top:2px; text-wrap:pretty;">{{ edu.note }}</div>{% endif %}
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+      <section>
+        <h2 style="font-family:'Space Grotesk',sans-serif; font-size:18px; font-weight:600; margin-bottom:18px;">Languages</h2>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          {% for lang in site.languages %}
+          <div style="display:flex; align-items:center; justify-content:space-between; padding-bottom:11px; border-bottom:1px solid var(--border);">
+            <span style="font-size:14.5px; font-weight:500;">{{ lang.name }}</span>
+            <span style="font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--fg-muted);">{{ lang.level }}</span>
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  (function () {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[data-tab]'));
+    var panels = {};
+    document.querySelectorAll('[data-panel]').forEach(function (p) {
+      panels[p.getAttribute('data-panel')] = p;
+    });
+    var valid = Object.keys(panels);
+    function activate(name) {
+      if (valid.indexOf(name) === -1) name = 'posts';
+      tabs.forEach(function (btn) {
+        var on = btn.getAttribute('data-tab') === name;
+        btn.style.background = on ? 'var(--card)' : 'transparent';
+        btn.style.color = on ? 'var(--fg)' : 'var(--fg-muted)';
+        btn.style.boxShadow = on ? 'var(--shadow)' : 'none';
+        btn.style.fontWeight = on ? '600' : '500';
+      });
+      valid.forEach(function (n) { panels[n].hidden = (n !== name); });
+    }
+    tabs.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var name = btn.getAttribute('data-tab');
+        activate(name);
+        if (history.replaceState) history.replaceState(null, '', '#' + name);
+        else location.hash = name;
+      });
+    });
+    window.addEventListener('hashchange', function () {
+      activate((location.hash || '').replace('#', ''));
+    });
+    var initial = (location.hash || '').replace('#', '');
+    if (initial) activate(initial);
+  })();
+</script>
+{% endblock %}

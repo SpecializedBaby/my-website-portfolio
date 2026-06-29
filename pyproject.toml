@@ -1,0 +1,20 @@
+[project]
+name = "my-portfolio"
+version = "0.1.0"
+description = "Personal portfolio website (posts, projects, resume) on FastAPI"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "jinja2>=3.1",
+    "markdown>=3.6",
+    "pygments>=2.18",
+    "pyyaml>=6.0",
+    "python-frontmatter>=1.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "httpx>=0.27"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
