@@ -20,14 +20,18 @@ socials:
     url: https://www.linkedin.com/in/dmytro-kostevskyi
     icon: linkedin
   - label: GitHub
-    url: https://github.com/dmytrokostevskyi
+    url: https://github.com/SpecializedBaby
     icon: github
   - label: Telegram
-    url: https://t.me/dmytro_kostevskyi
+    url: https://t.me/Headself
     icon: telegram
   - label: Email
     url: mailto:dmytro.kostevskyi@gmail.com
     icon: email
+  - label: WhatsApp
+    url: https://wa.me/34624946307
+    icon: whatsapp
+
 
 products:
   - initial: A
